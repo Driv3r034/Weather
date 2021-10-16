@@ -40,9 +40,9 @@ body {
     height: 55vh;
     padding-top: 50px;
     padding-left: 90px;
-    border-top: 2px solid #113a65;
-    border-bottom: 2px solid #113a65;
-    border-right: 2px solid #113a65;
+    /*border-top: 2px solid #113a65;*/
+    /*border-bottom: 2px solid #113a65;*/
+    /*border-right: 2px solid #113a65;*/
 }
 
 input[type="text"] {

@@ -1,33 +1,55 @@
-import React from "react";
+import React, { useState } from "react";
 import Info from "./components/info";
 import Form from "./components/form";
 import Weather from "./components/Weather";
 
 const API_KEY ="6a0a64df3f3462685f2ace2e35ca9ecc";
 
-class App extends React.Component {
+// const App = () => {
 
-    state = {
-        temp: null,
-        city: null,
-        country: null,
-        sunrise: null,
-        sunset: null,
-        pressure: null,
-        error: null
-    }
+export default function App () {
 
-    gettingWeather = async (event) => {
+    // state = {
+    //     temp: null,
+    //     city: null,
+    //     country: null,
+    //     sunrise: null,
+    //     sunset: null,
+    //     pressure: null,
+    //     error: null
+    // }
+
+    let [stateWeather, setStateWeather] = useState({
+            temp: null,
+            city: null,
+            country: null,
+            sunrise: null,
+            sunset: null,
+            pressure: null,
+            error: null
+        })
+
+    console.log(App);
+    console.log(useState.temp);
+    console.log(stateWeather);
+    console.log(setStateWeather);
+
+    const gettingWeather = async (event) => {
         event.preventDefault();
         const city = event.target.elements.city.value;
+        // const dataSet =
 
         if(city) {
             const api_url = await
                 fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`);
+            //units — Тип градусов;
             const data = await api_url.json();
             console.log(data);
             console.log(city);
             console.log(event);
+            console.log(stateWeather);
+            console.log(gettingWeather);
+            console.log(setStateWeather);
 
             if (data && data.name) {
                 let sunsetInSec = data.sys.sunset
@@ -38,7 +60,7 @@ class App extends React.Component {
                 let dateSunrise = new Date(sunriseInSec * 1000)
                 let timeSunrise = dateSunrise.toLocaleTimeString()
 
-                this.setState({
+                setStateWeather({
                     temp: Math.round(data.main.temp),
                     city: data.name,
                     country: data.sys.country,
@@ -48,7 +70,7 @@ class App extends React.Component {
                     error: null
                 });
             } else {
-                this.setState({
+                setStateWeather({
                     temp: null,
                     city: null,
                     country: null,
@@ -59,7 +81,7 @@ class App extends React.Component {
                 });
             }
         }   else {
-            this.setState({
+            setStateWeather({
                 temp: null,
                 city: null,
                 country: null,
@@ -71,7 +93,7 @@ class App extends React.Component {
         }
     }
 
-    render(){
+    // render(){
         return(
             <div className="wrapper">
                 <div className="main">
@@ -81,15 +103,15 @@ class App extends React.Component {
                                 <Info />
                             </div>
                             <div className="col-sm-7 form">
-                                <Form weatherMethod={this.gettingWeather} />
+                                <Form weatherMethod={gettingWeather} />
                                 <Weather
-                                    temp={this.state.temp}
-                                    city={this.state.city}
-                                    country={this.state.country}
-                                    sunrise={this.state.sunrise}
-                                    sunset={this.state.sunset}
-                                    pressure={this.state.pressure}
-                                    error={this.state.error}
+                                    temp={stateWeather.temp}
+                                    city={stateWeather.city}
+                                    country={stateWeather.country}
+                                    sunrise={stateWeather.sunrise}
+                                    sunset={stateWeather.sunset}
+                                    pressure={stateWeather.pressure}
+                                    error={stateWeather.error}
                                 />
                             </div>
                         </div>
@@ -97,7 +119,10 @@ class App extends React.Component {
                 </div>
             </div>
         )
-    }
+    // }
 }
+console.log(Weather.temp);
+console.log(Form.weatherMethod);
+console.log(Info);
 
-export default App;
+// export default App;
