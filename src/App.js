@@ -29,10 +29,10 @@ export default function App () {
             error: null
         })
 
-    console.log(App);
-    console.log(useState.temp);
-    console.log(stateWeather);
-    console.log(setStateWeather);
+    console.log('App', App);
+    console.log('useState.temp', useState.temp);
+    console.log('stateWeather', stateWeather);
+    console.log('setStateWeather', setStateWeather);
 
     const gettingWeather = async (event) => {
         event.preventDefault();
@@ -44,12 +44,12 @@ export default function App () {
                 fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`);
             //units — Тип градусов;
             const data = await api_url.json();
-            console.log(data);
-            console.log(city);
-            console.log(event);
-            console.log(stateWeather);
-            console.log(gettingWeather);
-            console.log(setStateWeather);
+            console.log('data', data);
+            console.log('city', city);
+            console.log('event', event);
+            console.log('stateWeather', stateWeather);
+            console.log('gettingWeather', gettingWeather);
+            console.log('setStateWeather', setStateWeather);
 
             if (data && data.name) {
                 let sunsetInSec = data.sys.sunset
@@ -93,7 +93,6 @@ export default function App () {
         }
     }
 
-    // render(){
         return(
             <div className="wrapper">
                 <div className="main">
@@ -119,10 +118,7 @@ export default function App () {
                 </div>
             </div>
         )
-    // }
 }
 console.log(Weather.temp);
 console.log(Form.weatherMethod);
 console.log(Info);
-
-// export default App;

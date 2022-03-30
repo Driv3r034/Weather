@@ -1,7 +1,7 @@
 import React from "react";
 
 const Weather = props => {
-    console.log(props)
+    console.log(props, 'Weather props')
     return (
     <div className="infoWeather">
         { props.city &&
@@ -16,13 +16,5 @@ const Weather = props => {
         <p className="error">{ props.error }</p>
     </div>
 )};
-
-
-// const Form = props => (
-//     <form onSubmit={props.weatherMethod}>
-//         <input type="text" name="city" placeholder="Город" />
-//         <button>Получить данные</button>
-//     </form>
-// )
 
 export default Weather;

@@ -8,15 +8,4 @@ const Form = props => (
     </form>
 )
 
-// function Form () {
-//     const [weatherMethod, setWeatherMethod] = useState();
-//
-//     return (
-//         <form onSubmit={weatherMethod}>
-//             <input type="text" name="city" placeholder="Город" />
-//             <button>Получить данные</button>
-//         </form>
-//     )
-// }
-
 export default Form;
