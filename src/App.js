@@ -1,23 +1,11 @@
-import React, { useState } from "react";
-import Info from "./components/info";
-import Form from "./components/form";
-import Weather from "./components/Weather";
+import React, { useState } from 'react';
+import Info from './components/info';
+import Form from './components/form';
+import { Weather } from './components/Weather';
 
 const API_KEY ="6a0a64df3f3462685f2ace2e35ca9ecc";
 
-// const App = () => {
-
 export default function App () {
-
-    // state = {
-    //     temp: null,
-    //     city: null,
-    //     country: null,
-    //     sunrise: null,
-    //     sunset: null,
-    //     pressure: null,
-    //     error: null
-    // }
 
     let [stateWeather, setStateWeather] = useState({
             temp: null,
@@ -29,11 +17,6 @@ export default function App () {
             error: null
         })
 
-    console.log('App', App);
-    console.log('useState.temp', useState.temp);
-    console.log('stateWeather', stateWeather);
-    console.log('setStateWeather', setStateWeather);
-
     const gettingWeather = async (event) => {
         event.preventDefault();
         const city = event.target.elements.city.value;
@@ -44,12 +27,10 @@ export default function App () {
                 fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`);
             //units — Тип градусов;
             const data = await api_url.json();
-            console.log('data', data);
-            console.log('city', city);
-            console.log('event', event);
-            console.log('stateWeather', stateWeather);
-            console.log('gettingWeather', gettingWeather);
-            console.log('setStateWeather', setStateWeather);
+            console.log('data:', data);
+            console.log('city:', city);
+            console.log('event:', event);
+            console.log('stateWeather:', stateWeather);
 
             if (data && data.name) {
                 let sunsetInSec = data.sys.sunset
@@ -66,7 +47,7 @@ export default function App () {
                     country: data.sys.country,
                     sunrise: timeSunrise,
                     sunset: timeSunset,
-                    pressure: data.main.pressure,
+                    pressure: data.main.pressure * 0.75,
                     error: null
                 });
             } else {

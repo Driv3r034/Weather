@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-const Weather = props => {
-    console.log(props, 'Weather props')
+export const Weather = props => {
+    console.log('Weather props:', props);
     return (
     <div className="infoWeather">
         { props.city &&
@@ -16,5 +16,3 @@ const Weather = props => {
         <p className="error">{ props.error }</p>
     </div>
 )};
-
-export default Weather;
